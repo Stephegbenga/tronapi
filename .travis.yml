@@ -1,0 +1,18 @@
+sudo: required
+language: python
+os: linux
+cache: pip
+dist: trusty
+python:
+  - "3.6"
+  - "3.7-dev"
+  - "nightly" # currently points to 3.7-dev
+# command to install dependencies
+install: "pip install -U setuptools setuptools_scm codecov pandas"
+# command to run tests
+script:
+  - python setup.py test
+  - coverage run setup.py test
+  
+after_success:
+  - codecov
